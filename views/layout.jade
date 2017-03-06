@@ -1,13 +1,21 @@
 doctype html
-html(lang='en')
+html
   head
-    meta(charset='UTF-8')
-    meta(name='viewport', content='width=device-width')
     title= title
-    block css
-      link(rel='stylesheet', href='/css/style.css')
-    block js
-      if ENV_DEVELOPMENT
-        script(src='http://localhost:35729/livereload.js')
+    link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    div(class='linechart' id='West Europe')
+    div(class='linechart' id='Australia East')
+    div(class='linechart' id='Southeast Asia')
+    div(class='linechart' id='East Asia')
+    div(class='linechart' id='South India')
+    div(class='linechart' id='Japan West')
+    div(class='linechart' id='Brazil South')
+    div(class='linechart' id='South Central US')
+    div(class='linechart' id='West US')
+    div(class='linechart' id='East US')
+        block content
+        block scripts
+            script(src='https://www.google.com/jsapi')
+            script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+            script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')

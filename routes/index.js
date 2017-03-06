@@ -1,10 +1,55 @@
 var express = require('express');
+var mongo = require('mongodb');
+var monk = require('monk');
 var router = express.Router();
 
 /* GET home page. */
 
 router.get('/', function(req, res) {
   res.render('index', { title: 'Express' });
+});
+
+/* GET regions data. */
+router.get('/regions', function(req, res) {
+	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
+	var db = monk(connstr);
+	var coll = db.get('demometrics');
+	coll.find({type : "regionInfo"},{fields: {region:1}}).then((docs) => {		
+		res.json(docs);
+	});
+	
+});
+
+/* GET latency chart  */
+router.get('/latencychart', function(req, res, next) {
+    res.render('latencychart', {
+        selected: 'latencychart'
+    });
+});
+
+function getParameterByName(name, url) {
+    if (!url) {
+      url = window.location.href;
+    }
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+/* GET latency data for each region */
+router.get('/regionlatencydata', function(req, res) {
+	var rval = getParameterByName('regionName', req.originalUrl);
+	console.log(rval);
+	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
+	var db = monk(connstr);
+	var coll = db.get('demometrics');
+	coll.find({type : "latencyInfo", region: rval},{fields: {region: 1, readLatency:1, writeLatency:1}}).then((docs) => {		
+		res.json(docs);
+	});
+	
 });
 
 module.exports = router;
