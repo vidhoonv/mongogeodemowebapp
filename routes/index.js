@@ -53,7 +53,6 @@ function getParameterByName(name, url) {
 /* GET latency data for each region */
 router.get('/regionlatencydata', function(req, res) {
 	var rval = getParameterByName('regionName', req.originalUrl);
-	console.log(rval);
 	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
 	var db = monk(connstr);
 	var coll = db.get('demometrics');

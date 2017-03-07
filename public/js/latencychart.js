@@ -47,7 +47,7 @@ function drawMap(){
 				  vals.push('Acc');
 			  }
 			  
-		      
+		      $('#worldmap').empty();
 			  $('#worldmap').vectorMap({
 					map: 'world_mill',
 					scaleColors: ['#C8EEFF', '#0071A4'],
@@ -95,7 +95,7 @@ function drawMap(){
 }
 
 function drawChart() {
-	setInterval(drawChart, (60 * 1000));
+	setInterval(drawChart, (30 * 1000));
 	drawMap();
     $.get('/regions', function(response) {
 		
