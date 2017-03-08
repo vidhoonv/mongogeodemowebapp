@@ -5,17 +5,29 @@ html
     link(rel='stylesheet', href='/css/jquery-jvectormap-2.0.3.css', media='screen')
     link(rel='stylesheet', href='/css/style.css')
   body
-    div(class='map' id='worldmap' style='width: 800px; height: 400px')
-    div(class='linechart' id='West Europe')
-    div(class='linechart' id='Australia East')
-    div(class='linechart' id='SouthEast Asia')
-    div(class='linechart' id='East Asia')
-    div(class='linechart' id='South India')
-    div(class='linechart' id='Japan West')
-    div(class='linechart' id='Brazil South')
-    div(class='linechart' id='South Central US')
-    div(class='linechart' id='West US')
-    div(class='linechart' id='East US')
+    h1(style='text-align: center') #{title} 
+       sub #{subtitle}
+    ul
+        li
+            a(href='https://azure.microsoft.com/en-us/services/documentdb/') Azure DocumentDB
+        li
+            a(href='https://portal.azure.com') Azure portal			
+        li
+            a(href='/readme') Readme
+        li(style='float: right')
+            a(href='/code') Code
+    div(class='mapcontainer')
+        div(class='map' id='worldmap' style='width: 100%; height: 400px' )
+    div(class='linechart' id='South Central US' style='width: 50%; float:left;'  )
+    div(class='linechart' id='West Europe' style='width: 50%; float:left;' )
+    div(class='linechart' id='West US' style='width: 50%; float:left;')
+    div(class='linechart' id='East US' style='width: 50%; float:left;')
+    div(class='linechart' id='Australia East' style='width: 50%; float:left;' )
+    div(class='linechart' id='SouthEast Asia' style='width: 50%; float:left;')
+    div(class='linechart' id='East Asia' style='width: 50%; float:left;')
+    div(class='linechart' id='South India' style='width: 50%; float:left;')
+    div(class='linechart' id='Japan West' style='width: 50%; float:left;')
+    div(class='linechart' id='Brazil South' style='width: 50%; float:left;')
         block content
         block scripts
             script(src='https://www.google.com/jsapi')

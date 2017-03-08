@@ -6,7 +6,11 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+ res.render('latencychart', {
+        selected: 'latencychart',
+		title: 'Geo Replication using Mongo API Support',
+		subtitle: 'Powered by Azure DocumentDB'
+    });
 });
 
 /* GET regions data. */
@@ -34,7 +38,8 @@ router.get('/accregions', function(req, res) {
 /* GET latency chart  */
 router.get('/latencychart', function(req, res, next) {
     res.render('latencychart', {
-        selected: 'latencychart'
+        selected: 'latencychart',
+		title: 'Mongo Geo Demo'
     });
 });
 
@@ -68,4 +73,9 @@ router.get('/map', function(req,res) {
     });
 });
 
+
+/* GET readme file  */
+router.get('/readme', function(req, res, next) {
+    res.render('readme');
+});
 module.exports = router;

@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    title='Readme'
+   body
+        p This demo has three components:
+            ul
+                li Node js Azure web app (front end)
+                li Azure cloud service worker roles deployed in various regions (simulates user app)
+                li Azure DocumentDB account with Mongo API support (backend)
+        p 
+            |Please use only the following regions as Read/Write regions of DocumentDB account or to run workers.
+            br
+            |This is because rendering the location of accounts/workers in map and displaying chart takes a dependency on this.
+            ul
+                li South Central US
+                li East US
+                li West US
+                li West Europe
+                li South India
+                li SouthEast Asia
+                li Japan West
+                li Australia East
+                li Brazil South
+        p Contact 
+            a(href='mailto:viviswan@microsoft.com') Vishi
+                

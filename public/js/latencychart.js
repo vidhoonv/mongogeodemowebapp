@@ -95,7 +95,7 @@ function drawMap(){
 }
 
 function drawChart() {
-	setInterval(drawChart, (120 * 1000));
+	setTimeout(drawChart, (30 * 1000));
 	drawMap();
     $.get('/regions', function(response) {
 		
@@ -120,12 +120,23 @@ function drawChart() {
 					// Create the data table.
 					var data = new google.visualization.DataTable();
 					data.addColumn('number', 'Time');
-					data.addColumn('number', 'Write Latency');
-					data.addColumn('number', 'Read Latency');
+					data.addColumn('number', 'Write');
+					data.addColumn('number', 'Read');
 					data.addRows(chartData);
 
 					var options = {
-						title: 'Mongo geo latencies as experienced from: '+ rval
+						title: rval,
+						hAxis:
+						{
+							title: 'Time',
+							viewWindow: {
+								min: 0
+							}
+						},
+						vAxes:
+						{
+							0: {title: 'Latency (in ms)'}
+						}
 					};
 
 					//create and draw the chart from DIV
