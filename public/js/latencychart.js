@@ -95,7 +95,7 @@ function drawMap(){
 }
 
 function drawChart() {
-	setInterval(drawChart, (30 * 1000));
+	setInterval(drawChart, (120 * 1000));
 	drawMap();
     $.get('/regions', function(response) {
 		
@@ -108,10 +108,10 @@ function drawChart() {
 			{
 				var chartData = [];
 				var rval;
-				for(var id = 0; id < resp.length; ++id) {
+				for(var id = resp.length-1; id >= 0; --id) {
 					var item = resp[id];
 					rval = item.region;
-					chartData.push([id+1, item.writeLatency, item.readLatency]);
+					chartData.push([resp.length-1-id, item.writeLatency, item.readLatency]);
 				}
 				//document.write(chartData);
 				
