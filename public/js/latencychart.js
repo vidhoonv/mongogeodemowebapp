@@ -155,6 +155,7 @@ function drawChart() {
         for(var idx = 0; idx < response.length; ++idx) {
             var item = response[idx];
 			var region = item.region;
+			var isWrite = item.iswriteregion;
 			
 			//for each region draw chart
 			$.get('/regionlatencydata', {regionName: region},function(resp)
@@ -164,16 +165,26 @@ function drawChart() {
 				for(var id = resp.length-1; id >= 0; --id) {
 					var item = resp[id];
 					rval = item.region;
-					chartData.push([resp.length-1-id, item.writeLatency, item.readLatency]);
+					if(isWrite)
+					{						
+						chartData.push([resp.length-1-id, item.readLatency]);
+					}
+					else
+					{						
+						chartData.push([resp.length-1-id, item.writeLatency, item.readLatency]);
+					}
 				}
-				//document.write(chartData);
 				
 				if(chartData.length > 0)
 				{
 					// Create the data table.
 					var data = new google.visualization.DataTable();
 					data.addColumn('number', 'Time');
-					data.addColumn('number', 'Write');
+					if(isWrite)
+					{
+						data.addColumn('number', 'Write');
+					}
+					
 					data.addColumn('number', 'Read');
 					data.addRows(chartData);
 
