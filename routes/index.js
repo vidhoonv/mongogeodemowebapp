@@ -18,7 +18,7 @@ router.get('/regions', function(req, res) {
 	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
 	var db = monk(connstr);
 	var coll = db.get('demometrics');
-	coll.find({type : "regionInfo"},{fields: {region:1}}).then((docs) => {		
+	coll.find({type : "regionInfo"},{fields: {region:1, iswriteregion:1}}).then((docs) => {		
 		res.json(docs);
 	});
 	

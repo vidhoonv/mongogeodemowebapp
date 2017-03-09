@@ -155,23 +155,27 @@ function drawChart() {
         for(var idx = 0; idx < response.length; ++idx) {
             var item = response[idx];
 			var region = item.region;
-			var isWrite = item.iswriteregion;
 			
 			//for each region draw chart
 			$.get('/regionlatencydata', {regionName: region},function(resp)
 			{
 				var chartData = [];
 				var rval;
+				var isWrite = false;
 				for(var id = resp.length-1; id >= 0; --id) {
 					var item = resp[id];
 					rval = item.region;
-					if(isWrite)
-					{						
-						chartData.push([resp.length-1-id, item.readLatency]);
+					if(resp[0].writeLatency > 0)
+					{
+						isWrite = true;
+					}
+					if(isWrite === true)
+					{			
+						chartData.push([resp.length-1-id,  item.readLatency, item.writeLatency]);
 					}
 					else
-					{						
-						chartData.push([resp.length-1-id, item.writeLatency, item.readLatency]);
+					{
+						chartData.push([resp.length-1-id,  item.readLatency]);
 					}
 				}
 				
@@ -180,12 +184,11 @@ function drawChart() {
 					// Create the data table.
 					var data = new google.visualization.DataTable();
 					data.addColumn('number', 'Time');
-					if(isWrite)
+					data.addColumn('number', 'Read');
+					if(isWrite === true)
 					{
 						data.addColumn('number', 'Write');
 					}
-					
-					data.addColumn('number', 'Read');
 					data.addRows(chartData);
 
 					var options = {
@@ -202,8 +205,8 @@ function drawChart() {
 						},
 						vAxes:
 						{
-							0: {title: 'Latency (in ms)'}
-						}
+							0: {title: 'Latency (in ms)'}							
+						}						
 					};
 
 					//create and draw the chart from DIV
