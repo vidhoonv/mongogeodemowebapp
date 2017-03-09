@@ -11,7 +11,7 @@ function drawMap(){
 	regionToAccLocation["West India"] = [21.511851, 70.664063]
 	regionToAccLocation["Central India"] = [21.920115, 77.783203]
 	
-	regionToAccLocation["West Europe"] = [51.95, 5.09]
+	regionToAccLocation["West Europe"] = [52.130020, 5.303081]
 	regionToAccLocation["North Europe"] = [53.142367, -7.692054]
 	regionToAccLocation["UK West"] = [51.481581, -3.17909]
 	regionToAccLocation["UK South"] = [51.507351, -0.127758]
@@ -44,11 +44,11 @@ function drawMap(){
     regionToAccLocation["Korea South"] = [35.179554, 129.075642]
 	
 	//user locations
-	regionToUserLocation["South India"] = [12.869962, 79.958496]
+	regionToUserLocation["South India"] = [8.512780, 77.854614]
 	regionToUserLocation["West India"] = [25.381254, 70.839844]
 	regionToUserLocation["Central India"] = [25.619239, 78.662109]
 	
-	regionToUserLocation["West Europe"] = [52.132633, 5.291266]
+	regionToUserLocation["West Europe"] = [56.818169, 9.777832]
 	regionToUserLocation["North Europe"] = [51.967539, -9.602051]
 	regionToUserLocation["UK West"] = [50.421644, -4.174805]
 	regionToUserLocation["UK South"] = [51.989743, 1.087646]
@@ -67,7 +67,7 @@ function drawMap(){
 	
 	regionToUserLocation["Brazil South"] = [-13.264006, -55.898438]
 	
-	regionToUserLocation["SouthEast Asia"] = [1.352083, 103.819836]
+	regionToUserLocation["SouthEast Asia"] = [-4.928147, 103.820801]
 	regionToUserLocation["East Asia"] = [23.621878, 121.113281]
 	
 	regionToUserLocation["Australia East"] = [-35.786627, 148.535156]
