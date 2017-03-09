@@ -9,7 +9,7 @@ var config = {
       name: 'nodeapp'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeapp-development'
+    db: 'mongodb://mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true'
   },
 
   test: {
@@ -18,7 +18,7 @@ var config = {
       name: 'nodeapp'
     },
     port: process.env.PORT || 3000,
-    db: 'mongodb://localhost/nodeapp-test'
+    db: 'mongodb://mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true'
   },
 
   production: {
@@ -27,7 +27,7 @@ var config = {
       name: 'nodeapp'
     },
     port: process.env.PORT,
-    db: 'mongodb://localhost/nodeapp-production'
+    db: 'mongodb://mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true'
   }
 };
 

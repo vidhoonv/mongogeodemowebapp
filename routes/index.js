@@ -15,8 +15,7 @@ router.get('/', function(req, res) {
 
 /* GET regions data. */
 router.get('/regions', function(req, res) {
-	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
-	var db = monk(connstr);
+	var db = req.db;
 	var coll = db.get('demometrics');
 	coll.find({type : "regionInfo"},{fields: {region:1, iswriteregion:1}}).then((docs) => {		
 		res.json(docs);
@@ -26,8 +25,7 @@ router.get('/regions', function(req, res) {
 
 /* GET acc regions data. */
 router.get('/accregions', function(req, res) {
-	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
-	var db = monk(connstr);
+	var db = req.db;
 	var coll = db.get('demometrics');
 	coll.find({type : "AccRegionInfo"},{fields: {regions:1}}).then((docs) => {		
 		res.json(docs);
@@ -58,8 +56,7 @@ function getParameterByName(name, url) {
 /* GET latency data for each region */
 router.get('/regionlatencydata', function(req, res) {
 	var rval = getParameterByName('regionName', req.originalUrl);
-	var connstr = 'mongodemovishi:N3rSZw2zbXKmvy4Dc8BH4fphy9YCoxesncWBbPLNKB0IGLz7cs57DISQ1U9Fx1D27H70JTd13hboxDUXD03tmw==@mongodemovishi.documents.azure.com:10250/nodetest/?ssl=true';
-	var db = monk(connstr);
+	var db = req.db;
 	var coll = db.get('demometrics');
 	coll.find({type : "latencyInfo", region: rval},{fields: {region: 1, readLatency:1, writeLatency:1, _id:1}, limit: 100, sort: {_id: -1}}).then((docs) => {		
 		res.json(docs);
