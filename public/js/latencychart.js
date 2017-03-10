@@ -2,7 +2,7 @@ google.load('visualization', '1', {'packages':['corechart', 'bar']});
 google.setOnLoadCallback(drawPage);
 
 function drawMap(){
-	setTimeout(drawMap, (60 * 1000));	
+	setTimeout(drawMap, (30 * 1000));	
 	var regionToAccLocation = {};
 	var regionToUserLocation = {};
 
@@ -149,7 +149,7 @@ function drawMap(){
 }
 
 function drawChart() {
-	setTimeout(drawChart, (10 * 1000));	
+	setTimeout(drawChart, (2 * 1000));	
     $.get('/regions', function(response) {
 		
         for(var idx = 0; idx < response.length; ++idx) {
