@@ -58,7 +58,7 @@ router.get('/regionlatencydata', function(req, res) {
 	var rval = getParameterByName('regionName', req.originalUrl);
 	var db = req.db;
 	var coll = db.get('demometrics');
-	coll.find({type : "latencyInfo", region: rval},{fields: {region: 1, readLatency:1, writeLatency:1, _id:1}, limit: 100, sort: {_id: -1}}).then((docs) => {		
+	coll.find({type : "latencyInfo", region: rval},{fields: {region: 1, readLatency:1, writeLatency:1, _id:1}, limit: 25, sort: {_id: -1}}).then((docs) => {		
 		res.json(docs);
 	});
 	
