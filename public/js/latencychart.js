@@ -149,7 +149,7 @@ function drawMap(){
 }
 
 function drawChart() {
-	setTimeout(drawChart, (2 * 1000));	
+	setTimeout(drawChart, (5 * 1000));	
     $.get('/regions', function(response) {
 		
         for(var idx = 0; idx < response.length; ++idx) {
