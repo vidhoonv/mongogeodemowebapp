@@ -43,7 +43,7 @@ var constants = {
 		"Korea South": [35.179554, 129.075642]
 	},
 	userLocations: {
-		"South India": [12.869962, 79.958496],
+		"South India": [8.512780, 77.854614],
 		"West India": [25.381254, 70.839844],
 		"Central India": [25.619239, 78.662109],
 
@@ -66,7 +66,7 @@ var constants = {
 
 		"Brazil South": [-13.264006, -55.898438],
 
-		"SouthEast Asia": [1.352083, 103.819836],
+		"SouthEast Asia": [-4.928147, 103.820801],
 		"East Asia": [23.621878, 121.113281],
 
 		"Australia East": [-35.786627, 148.535156],
