@@ -1,85 +1,88 @@
-google.load('visualization', '1', {'packages':['corechart', 'bar']});
-google.setOnLoadCallback(drawPage);
+//google.charts.load('visualization', '1', {'packages':['corechart', 'bar']});
+google.charts.load('current', {'packages': ['corechart']});
+google.charts.setOnLoadCallback(drawPage);
+
+var chart;
+
+var constants = {
+	dbLocations: {
+		"South India": [12.89, 77.18],
+		"West India": [21.511851, 70.664063],
+		"Central India": [21.920115, 77.783203],
+
+		"West Europe": [52.130020, 5.303081],
+		"North Europe": [53.142367, -7.692054],
+		"UK West": [51.481581, -3.17909],
+		"UK South": [51.507351, -0.127758],
+
+		"Japan West": [34.693738, 135.502165],
+		"Japan East": [35.895081, 139.630732],
+
+		"South Central US": [31.968599, -99.901813],
+		"East US": [37.431573, -78.656894],
+		"West US": [36.778261, -119.417932],
+		"East US 2": [37.210644, -81.035156],
+		"West US 2": [37.185485, -121.245117],
+		"Central US": [41.878003, -93.097702],
+		"West Central US": [45.514046, -97.382813],
+		"North Central US": [40.633125, -89.398528],
+
+		"Brazil South": [-23.543179, -46.629185],
+
+		"SouthEast Asia": [1.352083, 103.819836],
+		"East Asia": [22.396428, 114.109497],
+
+		"Australia East": [-31.253218, 146.921099],
+		"Australia SouthEast": [-35.623815, 139.042969],
+
+
+		"Canada Central": [43.653226, -79.383184],
+		"Canada East": [46.813878, -71.207981],
+
+		"Korea Central": [37.566535, 126.977969],
+		"Korea South": [35.179554, 129.075642]
+	},
+	userLocations: {
+		"South India": [12.869962, 79.958496],
+		"West India": [25.381254, 70.839844],
+		"Central India": [25.619239, 78.662109],
+
+		"West Europe": [56.818169, 9.777832],
+		"North Europe": [51.967539, -9.602051],
+		"UK West": [50.421644, -4.174805],
+		"UK South": [51.989743, 1.087646],
+
+		"Japan West": [33.127201, 133.022461],
+		"Japan East": [38.710161, 141.372070],
+
+		"South Central US": [30.267153, -97.743061],
+		"East US": [37.360334, -76.596680],
+		"West US": [41.358257, -122.695313],
+		"East US 2": [36.517362, -80.288086],
+		"West US 2": [33.190432, -116.718750],
+		"Central US": [42.405207, -100.283203],
+		"West Central US": [43.626135, -108.457031],
+		"North Central US": [37.882441, -88.505859],
+
+		"Brazil South": [-13.264006, -55.898438],
+
+		"SouthEast Asia": [1.352083, 103.819836],
+		"East Asia": [23.621878, 121.113281],
+
+		"Australia East": [-35.786627, 148.535156],
+	  "Australia SouthEast": [-37.471308, 144.785153],
+
+		"Canada Central": [46.481373, -75.058594],
+		"Canada East": [49.774170, -61.171875],
+
+		"Korea Central": [38.140767, 128.353271],
+	  "Korea South": [34.663570, 126.771240]
+	}
+};
 
 function drawMap(){
-	setTimeout(drawMap, (30 * 1000));	
-	var regionToAccLocation = {};
-	var regionToUserLocation = {};
+	setTimeout(drawMap, (60 * 1000));
 
-	//acc locations
-	regionToAccLocation["South India"] = [12.89, 79.18]
-	regionToAccLocation["West India"] = [21.511851, 70.664063]
-	regionToAccLocation["Central India"] = [21.920115, 77.783203]
-	
-	regionToAccLocation["West Europe"] = [52.130020, 5.303081]
-	regionToAccLocation["North Europe"] = [53.142367, -7.692054]
-	regionToAccLocation["UK West"] = [51.481581, -3.17909]
-	regionToAccLocation["UK South"] = [51.507351, -0.127758]
-	
-	regionToAccLocation["Japan West"] = [34.693738, 135.502165]
-	regionToAccLocation["Japan East"] = [35.895081, 139.630732]
-	
-	regionToAccLocation["South Central US"] = [31.968599, -99.901813]
-	regionToAccLocation["East US"] = [37.431573, -78.656894]
-	regionToAccLocation["West US"] = [36.778261, -119.417932]
-	regionToAccLocation["East US 2"] = [37.210644, -81.035156]
-	regionToAccLocation["West US 2"] = [37.185485, -121.245117]
-	regionToAccLocation["Central US"] = [41.878003, -93.097702]
-	regionToAccLocation["West Central US"] = [45.514046, -97.382813]	
-	regionToAccLocation["North Central US"] = [40.633125, -89.398528]
-	
-	regionToAccLocation["Brazil South"] = [-23.543179, -46.629185]
-	
-	regionToAccLocation["SouthEast Asia"] = [1.352083, 103.819836]
-	regionToAccLocation["East Asia"] = [22.396428, 114.109497]
-	
-	regionToAccLocation["Australia East"] = [-31.253218, 146.921099]
-    regionToAccLocation["Australia SouthEast"] = [-35.623815, 139.042969]
-	
-	
-	regionToAccLocation["Canada Central"] = [43.653226, -79.383184]
-	regionToAccLocation["Canada East"] = [46.813878, -71.207981]
-	
-	regionToAccLocation["Korea Central"] = [37.566535, 126.977969]
-    regionToAccLocation["Korea South"] = [35.179554, 129.075642]
-	
-	//user locations
-	regionToUserLocation["South India"] = [8.512780, 77.854614]
-	regionToUserLocation["West India"] = [25.381254, 70.839844]
-	regionToUserLocation["Central India"] = [25.619239, 78.662109]
-	
-	regionToUserLocation["West Europe"] = [56.818169, 9.777832]
-	regionToUserLocation["North Europe"] = [51.967539, -9.602051]
-	regionToUserLocation["UK West"] = [50.421644, -4.174805]
-	regionToUserLocation["UK South"] = [51.989743, 1.087646]
-	
-	regionToUserLocation["Japan West"] = [33.127201, 133.022461]
-	regionToUserLocation["Japan East"] = [38.710161, 141.372070]
-	
-	regionToUserLocation["South Central US"] = [30.267153, -97.743061]
-	regionToUserLocation["East US"] = [37.360334, -76.596680]
-	regionToUserLocation["West US"] = [41.358257, -122.695313]
-	regionToUserLocation["East US 2"] = [36.517362, -80.288086]
-	regionToUserLocation["West US 2"] = [33.190432, -116.718750]
-	regionToUserLocation["Central US"] = [42.405207, -100.283203]
-	regionToUserLocation["West Central US"] = [43.626135, -108.457031]	
-	regionToUserLocation["North Central US"] = [37.882441, -88.505859]
-	
-	regionToUserLocation["Brazil South"] = [-13.264006, -55.898438]
-	
-	regionToUserLocation["SouthEast Asia"] = [-4.928147, 103.820801]
-	regionToUserLocation["East Asia"] = [23.621878, 121.113281]
-	
-	regionToUserLocation["Australia East"] = [-35.786627, 148.535156]
-    regionToUserLocation["Australia SouthEast"] = [-37.471308, 144.785153]
-	
-	
-	regionToUserLocation["Canada Central"] = [46.481373, -75.058594]
-	regionToUserLocation["Canada East"] = [49.774170, -61.171875]
-	
-	regionToUserLocation["Korea Central"] = [38.140767, 128.353271]
-    regionToUserLocation["Korea South"] = [34.663570, 126.771240]
-	
 	  $.get('/regions', function(regionsResponse) {
 		  $.get('/accregions', function(accRegionsResponse) {
 			  var mapmarkers = [];
@@ -87,34 +90,44 @@ function drawMap(){
 			  for(var id=0;id<regionsResponse.length;id++)
 			  {
 				  var region = regionsResponse[id].region;
-				  
-				  mapmarkers.push({latLng: regionToUserLocation[region], name: region, type: "User"});
-				  vals.push('User');
-			  }
-			  
-			 
+
+				  mapmarkers.push({latLng: constants.userLocations[region], name: region, type: "App"});
+				  vals.push('App');
+			  };
+
+
 			  for(var id1=0;id1<accRegionsResponse[0].regions.length;id1++)
 			  {
 				  var accregion = accRegionsResponse[0].regions[id1];
-				  
-				  mapmarkers.push({latLng: regionToAccLocation[accregion], name: accregion, type: "Acc"});
-				  vals.push('Acc');
-			  }
-			  
-		      $('#worldmap').empty();
+
+				  mapmarkers.push({latLng: constants.dbLocations[accregion], name: accregion, type: "DB"});
+				  vals.push('DB');
+			  };
+
+				$('#worldmap').empty();
 			  $('#worldmap').vectorMap({
 					map: 'world_mill',
 					scaleColors: ['#C8EEFF', '#0071A4'],
 					normalizeFunction: 'polynomial',
 					hoverOpacity: 0.7,
 					hoverColor: false,
+					/*anhoh change*/
+					backgroundColor: 'none',
+					regionStyle: {
+						initial: {
+							fill: '#d4d9de',
+							stroke: 'none',
+							"stroke-width": 0,
+							"stroke-opacity": 1
+						}
+					},
+					/*anhoh end change*/
 					markerStyle: {
 					  initial: {
-						fill: '#F8E23B',
-						stroke: '#383f47'
+							fill: '#F8E23B',
+							stroke: '#383f47'
 					  }
 					},
-					backgroundColor: '#383f47',
 					markers: mapmarkers.map(function(h) {
 						return {
 							name: h.name,
@@ -123,39 +136,33 @@ function drawMap(){
 					}),
 					series: {
 						markers: [{
+							attribute: 'fill',
 							scale: {
-								'Acc': '#FF69B4',
-								'User': '#4169E1'
+								'DB': '#1889CA',
+								'App': '#EB3D25'
 							  },
-							attribute: 'fill',							  
 							values: vals,
 							legend: {
-							  horizontal: true,
-							  title: 'Legend',
-							  labelRender: function(v){
-								return {
-								  Acc: 'DB',
-								  User: 'User app'
-								}[v];
-							  }
+								vertical: true,
+								cssClass: "mapLegend"
 							}
 						}]
 					}
 				});
-			  
+
 		  }, 'json');
 	  }, 'json');
-      
+
 }
 
 function drawChart() {
-	setTimeout(drawChart, (5 * 1000));	
+	setTimeout(drawChart, (10 * 1000));
     $.get('/regions', function(response) {
-		
-        for(var idx = 0; idx < response.length; ++idx) {
-            var item = response[idx];
-			var region = item.region;
-			
+
+      for(var idx = 0; idx < response.length; ++idx) {
+          var item = response[idx];
+					var region = item.region;
+
 			//for each region draw chart
 			$.get('/regionlatencydata', {regionName: region},function(resp)
 			{
@@ -165,20 +172,22 @@ function drawChart() {
 				for(var id = resp.length-1; id >= 0; --id) {
 					var item = resp[id];
 					rval = item.region;
-					if(resp[0].writeLatency > 0)
-					{
-						isWrite = true;
-					}
-					if(isWrite === true)
-					{			
-						chartData.push([resp.length-1-id,  item.readLatency, item.writeLatency]);
-					}
-					else
-					{
-						chartData.push([resp.length-1-id,  item.readLatency]);
+					if($("div[id='" + rval + "']").length) {
+						if(resp[0].writeLatency > 0)
+						{
+							isWrite = true;
+						}
+						if(isWrite === true)
+						{
+							chartData.push([resp.length-1-id,  item.readLatency, item.writeLatency]);
+						}
+						else
+						{
+							chartData.push([resp.length-1-id,  item.readLatency]);
+						}
 					}
 				}
-				
+
 				if(chartData.length > 0)
 				{
 					// Create the data table.
@@ -193,36 +202,39 @@ function drawChart() {
 
 					var options = {
 						title: rval,
-						hAxis:
-						{
-							title: 'Time',
-							viewWindow: {
-								min: 0
-							},
+						colors: ['#59b4d9', '#89c402'],
+						hAxis: {
+							title: "Time",
 							gridlines: {
-								count: 100
-							}					
+								color: 'transparent'
+							}
 						},
-						vAxes:
-						{
-							0: {title: 'Latency (in ms)'}							
-						}						
+						vAxis: {
+							title: "Latency (ms)",
+							minValue: 0,
+							maxValue: 1000,
+							scaleType: 'log',
+							ticks: [0, 10, 100, 1000]
+						}
 					};
 
 					//create and draw the chart from DIV
-					var chart = new google.visualization.LineChart(document.getElementById(rval));
+					chart = new google.visualization.LineChart(document.getElementById(rval));
 					chart.draw(data, options);
 				}
-				
-				
 			}, 'json');
-			
         }
-		
     }, 'json');
+}
+
+function redraw() {
+	chart.draw(data, options);
 }
 
 function drawPage(){
 	drawChart();
 	drawMap();
+	//setRedraw();
 }
+
+window.onresize = function(){ drawPage(); }

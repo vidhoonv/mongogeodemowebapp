@@ -58,21 +58,10 @@ router.get('/regionlatencydata', function(req, res) {
 	var rval = getParameterByName('regionName', req.originalUrl);
 	var db = req.db;
 	var coll = db.get('demometrics');
-	coll.find({type : "latencyInfo", region: rval},{fields: {region: 1, readLatency:1, writeLatency:1, _id:1}, limit: 50, sort: {_id: -1}}).then((docs) => {		
+	coll.find({type : "latencyInfo", region: rval},{fields: {region: 1, readLatency:1, writeLatency:1, _id:1}, limit: 100, sort: {_id: -1}}).then((docs) => {		
 		res.json(docs);
 	});
 	
 });
 
-router.get('/map', function(req,res) {
-	res.render('map', {
-        selected: 'map'
-    });
-});
-
-
-/* GET readme file  */
-router.get('/readme', function(req, res, next) {
-    res.render('readme');
-});
 module.exports = router;
