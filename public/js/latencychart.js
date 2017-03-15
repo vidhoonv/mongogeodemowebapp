@@ -29,7 +29,7 @@ var constants = {
 
 		"Brazil South": [-23.543179, -46.629185],
 
-		"SouthEast Asia": [1.352083, 103.819836],
+		"Southeast Asia": [1.352083, 103.819836],
 		"East Asia": [22.396428, 114.109497],
 
 		"Australia East": [-31.253218, 146.921099],
@@ -47,7 +47,7 @@ var constants = {
 		"West India": [25.381254, 70.839844],
 		"Central India": [25.619239, 78.662109],
 
-		"West Europe": [56.818169, 9.777832],
+		"West Europe": [50.273543, 3.471680],
 		"North Europe": [51.967539, -9.602051],
 		"UK West": [50.421644, -4.174805],
 		"UK South": [51.989743, 1.087646],
@@ -66,7 +66,7 @@ var constants = {
 
 		"Brazil South": [-13.264006, -55.898438],
 
-		"SouthEast Asia": [-4.928147, 103.820801],
+		"Southeast Asia": [-1.153487, 101.425781],
 		"East Asia": [23.621878, 121.113281],
 
 		"Australia East": [-35.786627, 148.535156],
