@@ -30,7 +30,7 @@ var constants = {
 		"Brazil South": [-23.543179, -46.629185],
 
 		"Southeast Asia": [1.352083, 103.819836],
-		"East Asia": [22.396428, 114.109497],
+		"East Asia": [22.396428, 112.109497],
 
 		"Australia East": [-31.253218, 146.921099],
 		"Australia SouthEast": [-35.623815, 139.042969],
@@ -67,7 +67,7 @@ var constants = {
 		"Brazil South": [-13.264006, -55.898438],
 
 		"Southeast Asia": [-1.153487, 101.425781],
-		"East Asia": [23.621878, 121.113281],
+		"East Asia": [25.449165, 112.652344],
 
 		"Australia East": [-35.786627, 148.535156],
 	  "Australia SouthEast": [-37.471308, 144.785153],
